@@ -5,7 +5,7 @@
 
 ![image](https://user-images.githubusercontent.com/3519706/116244974-24793b80-a771-11eb-9cd4-f832225a289d.png)
 
-- It requires at least two healthy pod replicas to work
+- It requires at least two healthy pod replicas to work (but with - --min-replicas = 1 you can also operate on a single pod.)
 - Can suggest values or automatically update values for VPA, CPU and Memory requests and limits.
 - VPA allocates a minimum memory of 250MiB regardless of what you specify. Though this default can be modified at a global level
 - As Vertical Pod Autoscaling modifies the requests and limits automatically, you cannot use it with a Horizontal Pod Autoscaler because HPA relies on the CPU and Memory utilisation to horizontally scale pods.
