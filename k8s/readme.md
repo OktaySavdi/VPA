@@ -1,4 +1,6 @@
-###  Install command
+## Installing the Vertical Pod Autoscaler 
+
+You can use the Kubernetese to install the Vertical Pod Autoscaler (VPA).
 
 **Install Metric Server**
 ```bash
