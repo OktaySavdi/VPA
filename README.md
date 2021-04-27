@@ -3,6 +3,7 @@
 
 ### VPA
 
+- It requires at least two healthy pod replicas to work
 - As Vertical Pod Autoscaling modifies the requests and limits automatically, you cannot use it with a Horizontal Pod Autoscaler because HPA relies on the CPU and Memory utilisation to horizontally scale pods.
 - VPA allocates a minimum memory of 250MiB regardless of what you specify. Though this default can be modified at a global level
  - VPA only works with Deployments, StatefulSets, DaemonSets,ReplicaSets
