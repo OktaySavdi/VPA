@@ -74,6 +74,7 @@ After  [installation](https://github.com/kubernetes/autoscaler/tree/master/verti
 
 A simple way to check if Vertical Pod Autoscaler is fully operational in your cluster is to create a sample deployment and a corresponding VPA config:
 ```
+git clone https://github.com/OktaySavdi/VPA.git
 kubectl create -f examples/hamster.yaml
 ```
 The above command creates a deployment with 2 pods, each running a single container that requests 100 millicores and tries to utilize slightly above 500 millicores. The command also creates a VPA config pointing at the deployment. VPA will observe the behavior of the pods and after about 5 minutes they should get updated with a higher CPU request (note that VPA does not modify the template in the deployment, but the actual requests of the pods are updated). To see VPA config and current recommended resource requests run:
