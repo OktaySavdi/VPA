@@ -55,7 +55,7 @@ Within the spec section, we see a  `targetRef`  section that specifies the objec
 
 The  `resourcePolicy`  section allows us to specify  `containerPolicies`  for each container with a  `minAllowed`  and  `maxAllowed`  resource values. That is extremely important to save yourself from memory leaks. You can also switch off resource recommendations and autoscaling on a particular container within a pod, typically seen with Istio sidecars or  `InitContainers`.
 
-### Quick start
+### info
 
 After  [installation](https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler#installation)  the system is ready to recommend and set resource requests for your pods. In order to use it you need to insert a  _Vertical Pod Autoscaler_  resource for each controller that you want to have automatically computed resource requirements. This will be most commonly a  **Deployment**. There are three modes in which  _VPAs_  operate:
 
@@ -64,6 +64,11 @@ After  [installation](https://github.com/kubernetes/autoscaler/tree/master/verti
 -   `"Recreate"`: VPA assigns resource requests on pod creation as well as updates them on existing pods by evicting them when the requested resources differ significantly from the new recommendation (respecting the Pod Disruption Budget, if defined). This mode should be used rarely, only if you need to ensure that the pods are restarted whenever the resource request changes. Otherwise prefer the  `"Auto"`  mode which may take advantage of restart free updates once they are available.  **NOTE:**  This feature of VPA is experimental and may cause downtime for your applications.
 -   `"Initial"`: VPA only assigns resource requests on pod creation and never changes them later.
 -   `"Off"`: VPA does not automatically change resource requirements of the pods. The recommendations are calculated and can be inspected in the VPA object.
+
+### installattions
+
+- install on Kubernetes - [URL](https://github.com/OktaySavdi/VPA/tree/main/k8s)
+- install on Openshift  - [URL](https://github.com/OktaySavdi/VPA/tree/main/openshift)
 
 ### Test your installation
 
