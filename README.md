@@ -45,16 +45,6 @@ spec:
     updateMode: "Auto"
 ```
 
-### VPA Manifest
-
-Let’s look at an example VPA Manifest below:
-
-Like any manifest, it has an  `apiVersion`,  `kind`,  `metadata`, and  `spec`  section.
-
-Within the spec section, we see a  `targetRef`  section that specifies the object that this VPA applies to. The  `updatePolicy`  section defines whether this VPA would recommend or recommend and autoscale based on the  `updateMode`  property. If the  `updateMode`  property is set to  `Auto`, it autoscales pods vertically, if  `Off`, it merely recommends the ideal resource request values.
-
-The  `resourcePolicy`  section allows us to specify  `containerPolicies`  for each container with a  `minAllowed`  and  `maxAllowed`  resource values. That is extremely important to save yourself from memory leaks. You can also switch off resource recommendations and autoscaling on a particular container within a pod, typically seen with Istio sidecars or  `InitContainers`.
-
 ### How it works
 
 After  [installation](https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler#installation)  the system is ready to recommend and set resource requests for your pods. In order to use it you need to insert a  _Vertical Pod Autoscaler_  resource for each controller that you want to have automatically computed resource requirements. This will be most commonly a  **Deployment**. There are three modes in which  _VPAs_  operate:
