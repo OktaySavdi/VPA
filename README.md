@@ -19,9 +19,9 @@
 
 The project consists of 3 components:
 
--   [Recommender](https://github.com/kubernetes/autoscaler/blob/master/vertical-pod-autoscaler/pkg/recommender/README.md)  - checks for historical resource utilisation and current usage patterns and recommends an ideal resource request value.
+-   [Recommender]()  - Connects to the `metrics-server` application in the cluster, fetches historical and current usage data (CPU and memory) for each VPA-enabled pod and generates recommendations for scaling up or down the `requests` and `limits` of these pods.
     
--   [Updater](https://github.com/kubernetes/autoscaler/blob/master/vertical-pod-autoscaler/pkg/updater/README.md)  - it checks which of the managed pods have correct resources set and, if not, kills them so that they can be recreated by their controllers with the updated requests.
+-   [Updater]()  - Runs every 1 minute. If a pod is not running in the calculated recommendation range, it **evicts the currently running version of this pod**, so it can restart and go through the VPA admission webhook which will change the CPU and memory settings for it, before it can start.
     
 -   [Admission Plugin](https://github.com/kubernetes/autoscaler/blob/master/vertical-pod-autoscaler/pkg/admission-controller/README.md)  - it sets the correct resource requests on new pods (either just created or recreated by their controller due to Updater's activity).
 
