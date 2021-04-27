@@ -3,6 +3,8 @@
 
 ### VPA
 
+![image](https://user-images.githubusercontent.com/3519706/116244974-24793b80-a771-11eb-9cd4-f832225a289d.png)
+
 - It requires at least two healthy pod replicas to work
 - Can suggest values or automatically update values for VPA, CPU and Memory requests and limits.
 - VPA allocates a minimum memory of 250MiB regardless of what you specify. Though this default can be modified at a global level
@@ -14,6 +16,8 @@
 - HPA and VPA should not be used together for the same application.
 - VPA min, max recommended values can be given #limitRange should be planned
 - Metric server must be installed before
+- The original Deployment specification will be untouched
+But this has a nice side-effect: for example, if you’re using Argo CD, it won’t detect any diff in the Deployment specification.
 
 ### Components of VPA
 
@@ -62,12 +66,15 @@ After  [installation](https://github.com/kubernetes/autoscaler/tree/master/verti
 -   `"Off"`: VPA does not automatically change resource requirements of the pods. The recommendations are calculated and can be inspected in the VPA object.
 
 ###  Install command
+
+**Install Metric Server**
 ```bash
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 kubectl edit -n kube-system deployments.apps metrics-server
 
 - --kubelet-insecure-tls
 ```
+**Install VPA**
 ```bash
 git clone https://github.com/kubernetes/autoscaler.git
 cd /root/autoscaler/vertical-pod-autoscaler
