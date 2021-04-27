@@ -65,23 +65,6 @@ After  [installation](https://github.com/kubernetes/autoscaler/tree/master/verti
 -   `"Initial"`: VPA only assigns resource requests on pod creation and never changes them later.
 -   `"Off"`: VPA does not automatically change resource requirements of the pods. The recommendations are calculated and can be inspected in the VPA object.
 
-###  Install command
-
-**Install Metric Server**
-```bash
-kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
-kubectl edit -n kube-system deployments.apps metrics-server
-
-- --kubelet-insecure-tls
-```
-**Install VPA**
-```bash
-git clone https://github.com/kubernetes/autoscaler.git
-cd /root/autoscaler/vertical-pod-autoscaler
-./hack/vpa-up.sh
-
-kubectl get po -n kube-system
-```
 ### Test your installation
 
 A simple way to check if Vertical Pod Autoscaler is fully operational in your cluster is to create a sample deployment and a corresponding VPA config:
