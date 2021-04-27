@@ -4,11 +4,16 @@
 ### VPA
 
 - It requires at least two healthy pod replicas to work
-- As Vertical Pod Autoscaling modifies the requests and limits automatically, you cannot use it with a Horizontal Pod Autoscaler because HPA relies on the CPU and Memory utilisation to horizontally scale pods.
+- Can suggest values or automatically update values for VPA, CPU and Memory requests and limits.
 - VPA allocates a minimum memory of 250MiB regardless of what you specify. Though this default can be modified at a global level
- - VPA only works with Deployments, StatefulSets, DaemonSets,ReplicaSets
-   etc. You cannot use it with a standalone Pod that does not have an
-   owner.
+- As Vertical Pod Autoscaling modifies the requests and limits automatically, you cannot use it with a Horizontal Pod Autoscaler because HPA relies on the CPU and Memory utilisation to horizontally scale pods.
+- VPA only works with Deployments, StatefulSets, DaemonSets,ReplicaSets etc. You cannot use it with a standalone Pod that does not have an owner.
+- Cluster nodes are used efficiently because pods use exactly what they need.
+- VPA can adjust CPU and memory requests over time without you needing to do anything, reducing maintenance time.
+- VPA supports max 500 VerticalPodAutoscaler objects
+- HPA and VPA should not be used together for the same application.
+- VPA min, max recommended values can be given #limitRange should be planned
+- Metric server must be installed before
 
 ### Components of VPA
 
