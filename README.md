@@ -1,7 +1,7 @@
 ### Required
 - Metric Server
 
-### VPA
+### Highlight
 
 ![image](https://user-images.githubusercontent.com/3519706/116244974-24793b80-a771-11eb-9cd4-f832225a289d.png)
 
@@ -55,7 +55,7 @@ Within the spec section, we see a  `targetRef`  section that specifies the objec
 
 The  `resourcePolicy`  section allows us to specify  `containerPolicies`  for each container with a  `minAllowed`  and  `maxAllowed`  resource values. That is extremely important to save yourself from memory leaks. You can also switch off resource recommendations and autoscaling on a particular container within a pod, typically seen with Istio sidecars or  `InitContainers`.
 
-### info
+### How it works
 
 After  [installation](https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler#installation)  the system is ready to recommend and set resource requests for your pods. In order to use it you need to insert a  _Vertical Pod Autoscaler_  resource for each controller that you want to have automatically computed resource requirements. This will be most commonly a  **Deployment**. There are three modes in which  _VPAs_  operate:
 
