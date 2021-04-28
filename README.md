@@ -44,7 +44,31 @@ spec:
   updatePolicy:
     updateMode: "Auto"
 ```
-
+```
+#Configuring minimum and maximum values
+apiVersion: autoscaling.k8s.io/v1beta2
+kind: VerticalPodAutoscaler
+metadata:
+  name: prometheus-recommender
+spec:
+  targetRef:
+    apiVersion: "apps/v1"
+    kind:       Deployment
+    name:       prometheus-server
+  updatePolicy:
+    updateMode: "Off"
+  resourcePolicy:
+    containerPolicies:
+    - containerName: "frontend"
+      minAllowed:
+        cpu: "300m"
+        memory: "512Mi"
+      maxAllowed:
+        cpu: "1800m"
+        memory: "3600Mi"
+    - containerName: "backend"
+      mode: "Off"
+```
 ### How it works
 
 After  [installation](https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler#installation)  the system is ready to recommend and set resource requests for your pods. In order to use it you need to insert a  _Vertical Pod Autoscaler_  resource for each controller that you want to have automatically computed resource requirements. This will be most commonly a  **Deployment**. There are three modes in which  _VPAs_  operate:
