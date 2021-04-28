@@ -12,7 +12,7 @@ kubectl edit -n kube-system deployments.apps metrics-server
 **Install VPA**
 ```bash
 git clone https://github.com/kubernetes/autoscaler.git
-cd /root/autoscaler/vertical-pod-autoscaler
+cd autoscaler/vertical-pod-autoscaler
 ./hack/vpa-up.sh
 
 kubectl get po -n kube-system
