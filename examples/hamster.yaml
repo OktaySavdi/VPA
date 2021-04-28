@@ -8,12 +8,12 @@
 apiVersion: "autoscaling.k8s.io/v1"
 kind: VerticalPodAutoscaler
 metadata:
-  name: hamster-vpa
+  name: example-vpa
 spec:
   targetRef:
     apiVersion: "apps/v1"
     kind: Deployment
-    name: hamster
+    name: example
   resourcePolicy:
     containerPolicies:
       - containerName: '*'
@@ -28,22 +28,22 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hamster
+  name: example
 spec:
   selector:
     matchLabels:
-      app: hamster
+      app: example
   replicas: 2
   template:
     metadata:
       labels:
-        app: hamster
+        app: example
     spec:
       securityContext:
         runAsNonRoot: true
         runAsUser: 65534 # nobody
       containers:
-        - name: hamster
+        - name: example
           image: k8s.gcr.io/ubuntu-slim:0.1
           resources:
             requests:
