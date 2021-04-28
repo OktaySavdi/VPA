@@ -23,11 +23,11 @@ But this has a nice side-effect: for example, if youâ€™re using Argo CD, it wonâ
 
 The project consists of 3 components:
 
--   [Recommender](https://github.com/OktaySavdi/VPA)  - Connects to the `metrics-server` application in the cluster, fetches historical and current usage data (CPU and memory) for each VPA-enabled pod and generates recommendations for scaling up or down the `requests` and `limits` of these pods.
+-   **Recommender** - Connects to the  `metrics-server`  application in the cluster, fetches historical and current usage data (CPU and memory) for each VPA-enabled pod and generates recommendations for scaling up or down the  `requests`  and  `limits`  of these pods.
     
--   [Updater](https://github.com/OktaySavdi/VPA)  - Runs every 1 minute. If a pod is not running in the calculated recommendation range, it **evicts the currently running version of this pod**, so it can restart and go through the VPA admission webhook which will change the CPU and memory settings for it, before it can start.
+-   **Updater**  - Runs every 1 minute. If a pod is not running in the calculated recommendation range, it  `evicts the currently running version of this pod`, so it can restart and go through the VPA admission webhook which will change the CPU and memory settings for it, before it can start.
     
--   [Admission Plugin](https://github.com/OktaySavdi/VPA)  - it sets the correct resource requests on new pods (either just created or recreated by their controller due to Updater's activity).
+-   **Admission Plugin**  - it sets the correct resource requests on new pods (either just created or recreated by their controller due to Updater's activity).
 
 ### Example VPA configuration
 
