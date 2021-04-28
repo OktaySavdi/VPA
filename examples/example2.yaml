@@ -1,0 +1,65 @@
+---
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: example2-recommender
+spec:
+  targetRef:
+    apiVersion: "apps/v1"
+    kind:       Deployment
+    name:       example2
+  updatePolicy:
+    updateMode: "Off"
+  resourcePolicy:
+    containerPolicies:
+    - containerName: "frontend"
+      minAllowed:
+        cpu: "300m"
+        memory: "512Mi"
+      maxAllowed:
+        cpu: "1800m"
+        memory: "3600Mi"
+    - containerName: "backend"
+      mode: "Off"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example2
+spec:
+  selector:
+    matchLabels:
+      app: example
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: example
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65534 # nobody
+      containers:
+        - name: frontend
+          image: k8s.gcr.io/ubuntu-slim:0.1
+          resources:
+            requests:
+              cpu: 100m
+              memory: 50Mi
+            limits:
+              cpu: 200m
+              memory: 150Mi
+          command: ["/bin/sh"]
+          args:
+            - "-c"
+            - "while true; do timeout 0.5s yes >/dev/null; sleep 0.5s; done"
+        - name: backend
+          image: k8s.gcr.io/ubuntu-slim:0.1
+          resources:
+            requests:
+              cpu: 100m
+              memory: 50Mi
+          command: ["/bin/sh"]
+          args:
+            - "-c"
+            - "while true; do timeout 0.5s yes >/dev/null; sleep 0.5s; done"
