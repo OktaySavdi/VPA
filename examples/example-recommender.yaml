@@ -19,7 +19,7 @@ spec:
       maxAllowed:
         cpu: "1800m"
         memory: "3600Mi"
-    - containerName: "*"
+    - containerName: "backend"
       mode: "Off"
 ---
 apiVersion: apps/v1
